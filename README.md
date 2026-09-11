@@ -16,7 +16,7 @@
 
 ## Updates/News
 
-🚩 **News (Jun. 2026):** DeSCA has been released as an open-source framework for streaming spatio-temporal prediction and continual adaptation.
+🚩 **News (Sept. 2026):** DeSCA has been released as an open-source framework for streaming spatio-temporal prediction and continual adaptation.
 ## 📖 Introduction
 
 Spatio-temporal data are continuously collected in ubiquitous cyber-physical systems, often exhibiting spatio-temporal non-stationarity and continuous distribution shifts. This requires spatio-temporal models to continually adapt to streaming spatio-temporal data.
