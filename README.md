@@ -80,7 +80,7 @@ DeSCA is a plug-and-play continual adaptation framework that can be integrated i
 #### Example 1: DeSCA + EAC
 
 ```bash
-python main_pre.py \
+python main.py \
     --conf conf/PEMS03/eac_DeSCA.json \
     --gpuid 0 \
     --seed 43
@@ -98,7 +98,7 @@ python mainSTBP.py \
 #### Example 3: DeSCA + DCRNN
 
 ```bash
-python main_pre.py \
+python main.py \
     --conf conf/PEMS03/DCRNN_DeSCA.json \
     --gpuid 0 \
     --seed 43
@@ -107,7 +107,7 @@ python main_pre.py \
 #### Example 4: DeSCA + PDFormer
 
 ```bash
-python main_pre.py \
+python main.py \
     --conf conf/PEMS03/PDFormer_DeSCA.json \
     --gpuid 0 \
     --seed 43
