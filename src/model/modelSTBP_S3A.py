@@ -189,11 +189,11 @@ class DeviationGate(nn.Module):
         # scale back to original delta direction
         g_delta = delta * gate
         return g_delta, gate.mean()    
-class STBP_DeSCA(nn.Module):
+class STBP_S3A(nn.Module):
     
 
     def __init__(self, args):
-        super(STBP_DeSCA, self).__init__()
+        super(STBP_S3A, self).__init__()
         self.args = args
         self.year = args.year
         self.num_nodes = args.base_node_size

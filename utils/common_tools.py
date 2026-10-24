@@ -33,7 +33,7 @@ def load_best_model(args):
     
     model = args.methods[args.method](args)  # Initialize the model
     
-    if args.method == 'EAC'or args.method == 'EACpre':
+    if args.method == 'EAC'or args.method == 'EAC_S3A':
         if args.year == args.begin_year:
             model.expand_adaptive_params(args.base_node_size)
         else:
@@ -82,7 +82,7 @@ def load_test_best_model(args):
 
     model = args.methods[args.method](args)  # Initialize the model
     
-    if args.method == 'EAC'or args.method == 'EACpre':
+    if args.method == 'EAC'or args.method == 'EAC_S3A':
         if args.year == args.begin_year:
             model.expand_adaptive_params(args.base_node_size)
         else:

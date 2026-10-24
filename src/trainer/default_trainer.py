@@ -70,7 +70,7 @@ def train(inputs, args):
     # Model definition
     if args.init == True and args.year > args.begin_year:
         # construct model with previous year's node size from checkpoint
-        if args.method in ['EAC', 'EAC_DeSCA', 'DCRNN', 'DCRNN_DeSCA', 'PDFormer', 'PDFormer_DeSCA']:
+        if args.method in ['EAC', 'EAC_S3A', 'DCRNN', 'DCRNN_S3A', 'PDFormer', 'PDFormer_S3A']:
             prev_num_nodes = np.load(
                 osp.join(args.graph_path, str(args.year - 1) + "_adj.npz")
             )["x"].shape[0]
@@ -87,7 +87,7 @@ def train(inputs, args):
         else:
             model = gnn_model  # Otherwise, use the best model loaded
         
-        if args.method == 'EAC'or args.method == 'EAC_DeSCA':
+        if args.method == 'EAC'or args.method == 'EAC_S3A':
             args.logger.info("[CL] Before Freeze backbone parameters, trainable parameters:")
             for n, p in model.named_parameters():
                 if p.requires_grad:
@@ -101,7 +101,7 @@ def train(inputs, args):
                     args.logger.info(f"    [Trainable] {name}")
 
 
-        if args.method == 'DCRNN'or args.method == 'DCRNN_DeSCA':
+        if args.method == 'DCRNN'or args.method == 'DCRNN_S3A':
             args.logger.info("[CL] Before Freeze backbone parameters, trainable parameters:")
             for n, p in model.named_parameters():
                 if p.requires_grad:
@@ -120,7 +120,7 @@ def train(inputs, args):
                     args.logger.info(f"    [Trainable] {name}")
 
 
-        if args.method == 'PDFormer' or args.method == 'PDFormer_DeSCA':
+        if args.method == 'PDFormer' or args.method == 'PDFormer_S3A':
             args.logger.info("[CL] Before Freeze backbone parameters, trainable parameters:")
             for n, p in model.named_parameters():
                 if p.requires_grad:
@@ -144,7 +144,7 @@ def train(inputs, args):
 
         
         
-        if args.method in ['EAC', 'EAC_DeSCA', 'STID', 'gwnet', 'itransformer','DCRNN','DCRNN_DeSCA', 'PDFormer', 'PDFormer_DeSCA']:
+        if args.method in ['EAC', 'EAC_S3A', 'STID', 'gwnet', 'itransformer','DCRNN','DCRNN_S3A', 'PDFormer', 'PDFormer_S3A']:
             model.expand_adaptive_params(args.graph_size)
         
         
@@ -161,7 +161,7 @@ def train(inputs, args):
     else:
         gnn_model = args.methods[args.method](args).to(args.device)  # If it is the first year, use the base model
         model = gnn_model
-        if args.method in ['EAC', 'EAC_DeSCA','DCRNN','DCRNN_DeSCA']:
+        if args.method in ['EAC', 'EAC_S3A','DCRNN','DCRNN_S3A']:
             model.expand_adaptive_params(args.graph_size)
         
         if args.method == 'Universal' and args.use_eac == True:
@@ -221,7 +221,7 @@ def train(inputs, args):
             
             pred_loss = MAE_torch(pred, data.y, 0.0)
             #aux_loss = model.get_aux_loss() if args.method == 'EAC' else 0.0
-            aux_loss = model.get_aux_loss() if args.method in ['EAC_DeSCA','DCRNN_DeSCA','PDFormer_DeSCA'] else 0.0
+            aux_loss = model.get_aux_loss() if args.method in ['EAC_S3A','DCRNN_S3A','PDFormer_S3A'] else 0.0
             loss = pred_loss + aux_loss
             
             

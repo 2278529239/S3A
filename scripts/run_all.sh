@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 ###############################################################################
-# DeSCA
+# S3A
 # Run all experiments reported in the paper
 #
 # Usage:
@@ -13,59 +13,59 @@ set -e
 GPU=0
 
 echo "=================================================================="
-echo "DeSCA Experiments"
+echo "S3A Experiments"
 echo "GPU = ${GPU}"
 echo "=================================================================="
 
 ###############################################################################
-# EAC + DeSCA
+# EAC + S3A
 ###############################################################################
 
 echo ""
-echo "==================== EAC + DeSCA ===================="
+echo "==================== EAC + S3A ===================="
 
-python main.py --conf conf/PEMS03/eac_DeSCA.json   --gpuid ${GPU} --seed 43
-python main.py --conf conf/AIR/eac_DeSCA.json    --gpuid ${GPU} --seed 46
-python main.py --conf conf/PEMS04/eac_DeSCA.json --gpuid ${GPU} --seed 43
-
-
-###############################################################################
-# STBP + DeSCA
-###############################################################################
-
-echo ""
-echo "==================== STBP + DeSCA ===================="
-
-python mainSTBP_DeSCA.py --conf conf/PEMS03/STBP_DeSCA.json --gpuid ${GPU} --seed 43
-python mainSTBP_DeSCA.py --conf conf/AIR/STBP_DeSCA.json   --gpuid ${GPU} --seed 44
-python mainSTBP_DeSCA.py --conf conf/PEMS04/STBP_DeSCA.json --gpuid ${GPU} --seed 43
+python main.py --conf conf/PEMS03/eac_S3A.json   --gpuid ${GPU} --seed 43
+python main.py --conf conf/AIR/eac_S3A.json    --gpuid ${GPU} --seed 46
+python main.py --conf conf/PEMS04/eac_S3A.json --gpuid ${GPU} --seed 43
 
 
 ###############################################################################
-# DCRNN + DeSCA
+# STBP + S3A
 ###############################################################################
 
 echo ""
-echo "==================== DCRNN + DeSCA ===================="
+echo "==================== STBP + S3A ===================="
 
-python main.py --conf conf/PEMS03/DCRNN_DeSCA.json   --gpuid ${GPU} --seed 43
-python main.py --conf conf/AIR/DCRNN_DeSCA.json    --gpuid ${GPU} --seed 43
-python main.py --conf conf/PEMS04/DCRNN_DeSCA.json --gpuid ${GPU} --seed 43
+python mainSTBP_S3A.py --conf conf/PEMS03/STBP_S3A.json --gpuid ${GPU} --seed 43
+python mainSTBP_S3A.py --conf conf/AIR/STBP_S3A.json   --gpuid ${GPU} --seed 44
+python mainSTBP_S3A.py --conf conf/PEMS04/STBP_S3A.json --gpuid ${GPU} --seed 43
 
 
 ###############################################################################
-# PDFormer + DeSCA
+# DCRNN + S3A
 ###############################################################################
 
 echo ""
-echo "==================== PDFormer + DeSCA ===================="
+echo "==================== DCRNN + S3A ===================="
 
-python main.py --conf conf/PEMS03/PDFormer_DeSCA.json   --gpuid ${GPU} --seed 43
-python main.py --conf conf/AIR/PDFormer_DeSCA.json    --gpuid ${GPU} --seed 85
-python main.py --conf conf/PEMS04/PDFormer_DeSCA.json --gpuid ${GPU} --seed 43
+python main.py --conf conf/PEMS03/DCRNN_S3A.json   --gpuid ${GPU} --seed 43
+python main.py --conf conf/AIR/DCRNN_S3A.json    --gpuid ${GPU} --seed 43
+python main.py --conf conf/PEMS04/DCRNN_S3A.json --gpuid ${GPU} --seed 43
+
+
+###############################################################################
+# PDFormer + S3A
+###############################################################################
+
+echo ""
+echo "==================== PDFormer + S3A ===================="
+
+python main.py --conf conf/PEMS03/PDFormer_S3A.json   --gpuid ${GPU} --seed 43
+python main.py --conf conf/AIR/PDFormer_S3A.json    --gpuid ${GPU} --seed 85
+python main.py --conf conf/PEMS04/PDFormer_S3A.json --gpuid ${GPU} --seed 43
 
 
 echo ""
 echo "=================================================================="
-echo "All DeSCA experiments completed."
+echo "All S3A experiments completed."
 echo "=================================================================="

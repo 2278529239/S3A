@@ -13,11 +13,11 @@ from torch_geometric.utils import k_hop_subgraph
 from utils.data_convert import generate_samples
 from src.model.model import (
     TrafficStream_Model, STKEC_Model,
-    EAC, EAC_DeSCA,
+    EAC, EAC_S3A,
     Universal_Model, STID_Model,
     GraphWaveNet_Model,
-    DCRNN, DCRNN_DeSCA,
-    PDFormer, PDFormer_DeSCA
+    DCRNN, DCRNN_S3A,
+    PDFormer, PDFormer_S3A
 )
 from dataer.SpatioTemporalDataset import SpatioTemporalDataset
 from model import detect_default
@@ -85,7 +85,7 @@ def main(args):
     args.result = {"3":{" MAE":{}, "MAPE":{}, "RMSE":{}}, "6":{" MAE":{}, "MAPE":{}, "RMSE":{}}, "12":{" MAE":{}, "MAPE":{}, "RMSE":{}}, "Avg":{" MAE":{}, "MAPE":{}, "RMSE":{}}}
     mkdirs(args.save_data_path)
     vars(args)["graph_size_list"] = []
-    if args.method in ['EAC_DeSCA','DCRNN_DeSCA','PDFormer_DeSCA']:
+    if args.method in ['EAC_S3A','DCRNN_S3A','PDFormer_S3A']:
         args.dev_logger = build_dev_logger(osp.join(args.path, "deviation.log"))
 
     model = None
@@ -368,14 +368,14 @@ if __name__ == "__main__":
     vars(args)["methods"] = {'trafficstream': TrafficStream_Model, 
     'stkec': STKEC_Model, 
     'EAC': EAC,
-    'EAC_DeSCA': EAC_DeSCA, 
+    'EAC_S3A': EAC_S3A, 
     'Universal': Universal_Model,
     'STID': STID_Model,
     'gwnet': GraphWaveNet_Model,
     'DCRNN': DCRNN,
-    'DCRNN_DeSCA': DCRNN_DeSCA,
+    'DCRNN_S3A': DCRNN_S3A,
     'PDFormer': PDFormer,
-    'PDFormer_DeSCA': PDFormer_DeSCA
+    'PDFormer_S3A': PDFormer_S3A
     }
      # , 'LSTM': LSTM_Model, 'MLP': MLP_Model, 'STLora': STLora_Model, 
     

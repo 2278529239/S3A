@@ -1,8 +1,9 @@
 <div align="center">
 
-# 🔌 DeSCA
+# S³A
 
-### Streaming Spatio-Temporal Prediction: A Decoupled and Selective Continual Adaptation Framework
+### Which Parameters to Update? Shift-Specific Selective  
+### Adaptation for Continual Spatio-Temporal Prediction
 
 <p><em>Paper under review</em></p>
 
@@ -10,31 +11,30 @@
 
 <div align="center">
 
-⭐ DeSCA is a decoupled and selective continual adaptation framework for streaming spatio-temporal prediction.
+⭐ S³A is a plug-and-play shift-specific selective adaptation framework for continual spatio-temporal prediction.
 
 </div>
 
 ## Updates/News
 
-🚩 **News (Sept. 2026):** DeSCA has been released as an open-source framework for streaming spatio-temporal prediction and continual adaptation.
+🚩 **News (Oct. 2026):** S³A has been released as an open-source framework for continual spatio-temporal prediction.
+
 ## 📖 Introduction
 
-Spatio-temporal data are continuously collected in ubiquitous cyber-physical systems, often exhibiting spatio-temporal non-stationarity and continuous distribution shifts. This requires spatio-temporal models to continually adapt to streaming spatio-temporal data.
+Online urban services and sensing infrastructure continuously generate large-scale streaming spatio-temporal data, where spatial correlations and observation distributions shift independently or jointly over time, resulting in diverse shift patterns across periods. Existing methods typically adapt by fine-tuning the backbone or uniformly updating predefined adaptation parameters, but do not distinguish these shift patterns, making it difficult to adapt to shifts in spatial correlations or observation distributions while preserving the modeling of the other when it remains stationary, thereby compromising continual adaptation stability.
 
-Existing methods that update backbone parameters are limited in both efficiency and effectiveness, incurring substantial training costs and risking catastrophic forgetting. Recent methods improve efficiency by freezing the backbone and updating lightweight plug-in parameters. However, most lightweight adaptation methods apply a rigid adaptation strategy to spatial and temporal changes, overlooking that heterogeneous spatio-temporal non-stationarity may manifest as distinct temporal shifts, spatial shifts, or joint shifts. This often introduces unnecessary updates and limits adaptation effectiveness.
-
-To address these limitations, we propose **DeSCA**, a **Decoupled and Selective Continual Adaptation** framework for streaming spatio-temporal prediction.
+To address this issue, we propose **S³A**, a plug-and-play **S**hift-**S**pecific **S**elective **A**daptation framework for continual spatio-temporal prediction. S³A constructs separate adaptation parameters for spatial correlations and observation distributions, detects shift patterns, and selectively updates the corresponding parameters.
 
 Specifically:
 
-- A **Decoupled Prompt Mapping Module** constructs spatial and temporal prompts to provide separate adaptation feeds.
-- A **Prototype-aware Shift Detection Module** derives spatial and temporal deviations to identify temporal-dominant, spatial-dominant, and joint shift patterns.
-- A **Selective Gated Updating Module** filters insignificant deviations and activates only the prompt parameters indicated by effective deviations, reducing unnecessary updates and improving adaptation stability.
+- **Factorized parameterization** along the node and temporal-feature dimensions enables separate adaptation of spatial correlations and observation distributions.
+- **Prototype-based detection** measures deviations from historical prototype states to characterize shift patterns.
+- A **proximal-gated selective updating** module identifies substantive shifts and updates the corresponding parameters.
 
-Extensive experiments on three real-world streaming spatio-temporal datasets demonstrate that DeSCA consistently improves four representative backbone architectures, achieving an average performance gain of **8.56%** across all backbones and evaluation metrics while maintaining **linear time and space complexity**.
+Extensive experiments on three real-world spatio-temporal datasets show that S³A consistently improves four representative backbones and demonstrates the benefits of shift-specific selective adaptation for maintaining stable performance.
 
 <p align="center">
-    <img src="fig/structure.png" alt="DeSCA Framework" align="center" width="800px" />
+    <img src="fig/structure.png" alt="S3A Framework" align="center" width="800px" />
 </p>
 
 ## 📊 Datasets
@@ -75,40 +75,40 @@ conda activate stg
 
 ### Quick Start
 
-DeSCA is a plug-and-play continual adaptation framework that can be integrated into different streaming spatio-temporal forecasting backbones.
+S³A is a plug-and-play continual adaptation framework that can be integrated into different streaming spatio-temporal forecasting backbones.
 
-#### Example 1: DeSCA + EAC
+#### Example 1: S³A + EAC
 
 ```bash
 python main.py \
-    --conf conf/PEMS03/eac_DeSCA.json \
+    --conf conf/PEMS03/eac_S3A.json \
     --gpuid 0 \
     --seed 43
 ```
 
-#### Example 2: DeSCA + STBP
+#### Example 2: S³A + STBP
 
 ```bash
-python mainSTBP.py \
-    --conf conf/PEMS03/STBP_DeSCA.json \
+python mainSTBP_S3A.py \
+    --conf conf/PEMS03/STBP_S3A.json \
     --gpuid 0 \
     --seed 43
 ```
 
-#### Example 3: DeSCA + DCRNN
+#### Example 3: S³A + DCRNN
 
 ```bash
 python main.py \
-    --conf conf/PEMS03/DCRNN_DeSCA.json \
+    --conf conf/PEMS03/DCRNN_S3A.json \
     --gpuid 0 \
     --seed 43
 ```
 
-#### Example 4: DeSCA + PDFormer
+#### Example 4: S³A + PDFormer
 
 ```bash
 python main.py \
-    --conf conf/PEMS03/PDFormer_DeSCA.json \
+    --conf conf/PEMS03/PDFormer_S3A.json \
     --gpuid 0 \
     --seed 43
 ```
@@ -123,14 +123,14 @@ bash scripts/run_all.sh
 
 | Backbone | Model Family | Variant |
 |-----------|-------------|----------|
-| DCRNN | RNN-based | DCRNN w/ DeSCA |
-| PDFormer | Transformer-based | PDFormer w/ DeSCA |
-| EAC | STGNN-based | EAC w/ DeSCA |
-| STBP | Frequency-based | STBP w/ DeSCA |
+| DCRNN | RNN-based | DCRNN w/ S³A |
+| PDFormer | Transformer-based | PDFormer w/ S³A |
+| EAC | STGNN-based | EAC w/ S³A |
+| STBP | Frequency-based | STBP w/ S³A |
 
-DeSCA is not a standalone forecasting model.
+S³A is not a standalone forecasting model.
 
-Instead, it functions as a decoupled and selective continual adaptation framework that can be seamlessly integrated into diverse streaming spatio-temporal forecasting backbones, including RNN-based, Transformer-based, STGNN-based, and frequency-based architectures.
+Instead, it functions as a shift-specific selective adaptation framework that can be seamlessly integrated into diverse streaming spatio-temporal forecasting backbones, including RNN-based, Transformer-based, STGNN-based, and frequency-based architectures.
 
 
 ## 🔗 Acknowledgement

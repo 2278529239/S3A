@@ -7,11 +7,11 @@ import os.path as osp
 import networkx as nx
 from torch_geometric.loader import DataLoader
 from utils.data_convert import generate_samples
-from src.model.modelSTBP_DeSCA import STBP_DeSCA
+from src.model.modelSTBP_S3A import STBP_S3A
 from src.dataer.SpatioTemporalDataset import SpatioTemporalDataset
 from utils.initialize import init, seed_anything, init_log
 from utils.common_toolsSTBP import mkdirs, load_best_model
-from src.trainer.default_trainerSTBP_DeSCA import train, test_model
+from src.trainer.default_trainerSTBP_S3A import train, test_model
 
 def build_dev_logger(log_path):
     os.makedirs(os.path.dirname(log_path), exist_ok=True)
@@ -165,7 +165,7 @@ if __name__ == "__main__":
     parser.add_argument("--paral", type = int, default = 0)
     parser.add_argument("--gpuid", type = int, default = 1)
     parser.add_argument("--logname", type = str, default = "info")
-    parser.add_argument("--method", type = str, default = "STBP_DeSCA")
+    parser.add_argument("--method", type = str, default = "STBP_S3A")
     parser.add_argument("--load_first_year", type = int, default = 0, help="0: training first year, 1: load from model path of first year")
     parser.add_argument("--first_year_model_path", type = str, default = "", help='specify a pretrained model root')
     
@@ -176,7 +176,7 @@ if __name__ == "__main__":
     
     args = parser.parse_args()
     vars(args)["device"] = torch.device("cuda:{}".format(args.gpuid)) if torch.cuda.is_available() and args.gpuid != -1 else "cpu"
-    vars(args)["methods"] = {'STBP_DeSCA': STBP_DeSCA}
+    vars(args)["methods"] = {'STBP_S3A': STBP_S3A}
     init(args)
     if not hasattr(args, "prototype_num"):
         args.prototype_num = 10

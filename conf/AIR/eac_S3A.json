@@ -16,25 +16,31 @@
     "save_data_path": "data/AIR/FastData/",
     "graph_path": "data/AIR/graph/",
     "model_path": "log/AIR/",
-    "gcn": {
+    "gcn":{
         "in_channel": 12,
         "out_channel": 12,
         "hidden_channel": 64
     },
-    "tcn": {
+
+    "tcn":{
         "in_channel": 1,
         "out_channel": 1,
         "kernel_size": 3,
         "dilation": 1
     },
-    "method": "DCRNN_DeSCA",
-    "logname": "dcrnn_DeSCA",
-
+    
+    "method": "EAC_S3A",
+    "logname": "eac_S3A",
     "init": true,
     "train": 1,
     "auto_test": 1,
+
     "strategy": "retrain",
+
     "detect": false,
+
     "ewc": false,
+    
     "replay": false
+
 }

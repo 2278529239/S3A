@@ -46,7 +46,7 @@ def load_best_model(args):
 
     model = args.methods[args.method](args)
     
-    if args.method == 'STBPpre' or args.method == 'STBP':
+    if args.method == 'STBP' or args.method == 'STBP_S3A':
         if args.year == args.begin_year:
             model.expand_adaptive_params(args.base_node_size)
         else:

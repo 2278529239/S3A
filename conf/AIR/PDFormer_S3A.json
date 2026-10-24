@@ -36,8 +36,8 @@
         "dilation": 1
     },
 
-    "method": "PDFormer_DeSCA",
-    "logname": "pdformer_DeSCA",
+    "method": "PDFormer_S3A",
+    "logname": "pdformer_S3A",
 
 
     

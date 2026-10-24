@@ -269,10 +269,10 @@ class DeviationGate(nn.Module):
         gate = F.relu(norm - self.tau) / (norm + 1e-8)
         g_delta = delta * gate
         return g_delta, gate.mean()  # mean activation for logging
-class EAC_DeSCA(nn.Module):
-    """Some Information about EAC_DeSCA"""
+class EAC_S3A(nn.Module):
+    """Some Information about EAC_S3A"""
     def __init__(self, args):
-        super(EAC_DeSCA, self).__init__()
+        super(EAC_S3A, self).__init__()
         self.args = args
         self.dropout = args.dropout
         self.rank = args.rank  # Set a low rank value
@@ -677,12 +677,12 @@ class DCRNN(nn.Module):
 
 
 # DCRNN + Plugin
-class DCRNN_DeSCA(nn.Module):
+class DCRNN_S3A(nn.Module):
     """
     DCRNN-style backbone + plugin
     """
     def __init__(self, args):
-        super(DCRNN_DeSCA, self).__init__()
+        super(DCRNN_S3A, self).__init__()
         self.args = args
         self.dropout = args.dropout
         self.rank = args.rank
@@ -1507,13 +1507,13 @@ class PDFormer(nn.Module):
         self.U = nn.Parameter(torch.cat([self.U, new_params], dim=0))
         self.num_nodes = new_num_nodes
 
-class PDFormer_DeSCA(nn.Module):
+class PDFormer_S3A(nn.Module):
     """
     PDFormer-style backbone + your plugin.
     Strictly matched with the enhanced PDFormer_Backbone.
     """
     def __init__(self, args):
-        super(PDFormer_DeSCA, self).__init__()
+        super(PDFormer_S3A, self).__init__()
         self.args = args
         self.dropout = args.dropout
         self.rank = args.rank

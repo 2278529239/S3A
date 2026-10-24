@@ -42,7 +42,7 @@ def train(inputs, args):
         CSTL_model, _  = load_best_model(args) 
         model = CSTL_model
         
-        if args.method == 'STBP_DeSCA':
+        if args.method == 'STBP_S3A':
             args.logger.info("[CL] Before Freeze backbone parameters, trainable parameters:")
             for n, p in model.named_parameters():
                 if p.requires_grad:
@@ -62,7 +62,7 @@ def train(inputs, args):
     else:
         CSTL_model = args.methods[args.method](args).to(args.device)  
         model = CSTL_model
-        if args.method == 'STBP_DeSCA':
+        if args.method == 'STBP_S3A':
             model.expand_adaptive_params(args.graph_size)
     
     model.count_parameters()
