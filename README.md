@@ -2,8 +2,7 @@
 
 # S³A
 
-### Which Parameters to Update? Shift-Specific Selective  
-### Adaptation for Continual Spatio-Temporal Prediction
+### Which Parameters to Update? Shift-Specific Selective Adaptation for Continual Spatio-Temporal Prediction
 
 <p><em>Paper under review</em></p>
 
